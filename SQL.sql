@@ -46,3 +46,42 @@ update employee set address="Dombivli" where department="IT";
 update employee set Title="Mr." where gender="Male";
 update employee set Title="Ms." where gender="Female";
 update employee set bonus=salary*0.05;
+select * from employee;
+
+
+
+use t388;
+create table Kisan_Info
+(ID int unique not null,
+name varchar(50) unique not null,
+age int check (age>=18),
+email_ID varchar(40) default "dummy123@gmail.com"
+);
+desc Kisan_Info;
+insert into Kisan_Info values
+(1001,"Jayant Kumar",59,"");
+select * from Kisan_Info;
+update Kisan_Info set email_ID=default
+where ID=1001;
+insert into Kisan_Info values
+(1002,"Rajesh Pradhan",56,default);
+alter table Kisan_Info modify age int check (age>=0);
+insert into Kisan_info values
+(1003,"kkkkkk",16,default);
+show create table Kisan_Info;
+alter table Kisan_Info drop check Kisan_Info_chk_1;
+alter table Kisan_Info drop check Kisan_Info_chk_2;
+alter table Kisan_Info drop check Kisan_Info_chk_3;
+insert into kisan_info (ID,name,age) values
+(1004,"hediuwheiduhwi",38);
+
+
+
+select distinct Department from employee;
+select distinct gender from employee;
+use t388;
+show tables;
+select * from employee
+where department="IT" or department="finance";
+select * from employee
+where department in ("HR","Finance");
