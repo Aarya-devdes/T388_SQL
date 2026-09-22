@@ -46,3 +46,52 @@ order by duration desc;
 
 select * from employee;
 select * from employee limit 3,5;
+select distinct department from employee;
+select distinct gender from employee;
+select * from projects where employeeid is null;
+select * from projects where employeeid is not null;
+
+-- Auto Increment
+desc projects;
+update projects set employeeid=1003 where projectid=6;
+select * from projects;
+
+-- in between like
+select * from employee where employeeid between 1003 and 1007;
+select * from employee where age between 25 and 27;
+select * from employee where EmployeeId in (1003,1005,1007);
+
+-- lilke operator
+select * from employee where fullname like '%y%';
+select * from employee where fullname like '%a_';
+
+use t388;
+select * from `LIKE`;
+select * from `like` where fullname like"a%";
+select * from `like` where fullname like"_u%";
+select * from `like` where fullname not like"a%t";
+
+
+select avg(salary) from employee;
+select sum(salary) from employee;
+select max(salary) from employee;
+select min(salary) from employee;
+select count(salary) from employee;
+select count(salary) from employee;
+select count(salary) as Total_EMP,
+avg (salary) as Average
+,sum(salary) as Total_salary from Employee;
+
+-- maths functions
+select abs(300-800);
+select (6*(-7));
+
+select abs(datediff(startdate,enddate)) as duration from projects;
+select 16%2 as remainder;
+select floor(33.5);
+
+select truncate(1234.6465464564,2);
+select truncate(1234.6465464564,0);
+select truncate(1234.6465464564,-1);
+
+select exp(2);
