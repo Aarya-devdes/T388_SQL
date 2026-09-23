@@ -82,16 +82,38 @@ select count(salary) as Total_EMP,
 avg (salary) as Average
 ,sum(salary) as Total_salary from Employee;
 
--- maths functions
-select abs(300-800);
-select (6*(-7));
 
-select abs(datediff(startdate,enddate)) as duration from projects;
-select 16%2 as remainder;
-select floor(33.5);
+-- concat
+select concat("Good"," ","Morning");
+select * from employee;
+select *, concat(fullname," ",department) as code from employee;
+select *, concat(fullname,"@itvendant.com") as email from employee;
+select *, lower(fullname) as newname, upper(fullname) as CAPNAME from employee;
+alter table employee add email varchar(50);
+update employee set email= concat(fullname,"@gmail.com");
 
-select truncate(1234.6465464564,2);
-select truncate(1234.6465464564,0);
-select truncate(1234.6465464564,-1);
+-- replace & Reverse
+select replace("Hello Everyone, Good Morning","Morning","Night");
+select fullname, replace(fullname,"Mohanty","Patil")as changed,
+reverse(fullname) from employee;
 
-select exp(2);
+-- Lenght
+select fullname, length(fullname)from employee;
+
+-- Substring
+select substring("Maharashtra",5,4);
+
+-- Trim
+select length(email), trim(email) from employee;
+select trim(email) from employee;
+
+
+-- Sub Queries
+select Age from employee where EmployeeId=1002;
+select Age from employee where FullName="Mary Smith";
+select * from employee where age=(select Age from employee where FullName="Mary Smith");
+select * from employee where Salary=(select Salary from employee where FullName="John Doe");
+select * from employee where Department=(select Department from employee where FullName="John Doe");
+select max(salary) from employee;
+select max(salary) from employee where salary < (select max(salary) from employee);
+select max(salary) from employee where salary < (select max(salary) from employee where salary < (select max(salary) from employee));
