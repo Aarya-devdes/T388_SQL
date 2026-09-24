@@ -108,12 +108,39 @@ select length(email), trim(email) from employee;
 select trim(email) from employee;
 
 
--- Sub Queries
+-- One Row Sub Queries (gives result for only 1 value)
 select Age from employee where EmployeeId=1002;
 select Age from employee where FullName="Mary Smith";
 select * from employee where age=(select Age from employee where FullName="Mary Smith");
 select * from employee where Salary=(select Salary from employee where FullName="John Doe");
 select * from employee where Department=(select Department from employee where FullName="John Doe");
 select max(salary) from employee;
+
+-- 2nd highest salary
 select max(salary) from employee where salary < (select max(salary) from employee);
+-- 3rd highest salary
 select max(salary) from employee where salary < (select max(salary) from employee where salary < (select max(salary) from employee));
+
+-- multiple row sub-queries (gives result for 2 different values)
+select Age from employee where EmployeeId in (1002,1003);
+select * from employee where age in (select Age from employee where EmployeeId in (1002,1003)); -- where there are multiple sub queuries do not use =
+select FullName, Department from employee where Department in (select Department from employee where EmployeeId in (1002,1003));
+
+
+-- any & all
+-- >any = more than minimum/ <any = less than maximum (uses OR logic of Excel)
+-- All is basically AND logic
+select salary from employee where employeeid between 1001 and 1003;
+select * from employee where salary <any (select salary from employee where employeeid between 1001 and 1003);
+select * from employee where salary <all (select salary from employee where employeeid between 1001 and 1003);
+
+-- JOINS
+
+
+
+
+
+
+
+
+
