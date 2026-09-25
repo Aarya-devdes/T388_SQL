@@ -135,12 +135,48 @@ select * from employee where salary <any (select salary from employee where empl
 select * from employee where salary <all (select salary from employee where employeeid between 1001 and 1003);
 
 -- JOINS
+CREATE TABLE Name (
+Id INT PRIMARY KEY,
+`Name` VARCHAR(45) NOT NULL);
+INSERT INTO Name values
+(1,"a"),
+(2,"b"),
+(3,"c"),(4,"d"),(5,"e");
+select * from name;
+CREATE TABLE Salary (
+Id INT PRIMARY KEY,
+Salary Float NOT NULL);
+INSERT INTO Salary values
+(1,10),
+(2,20),
+(4,30),(5,40),(7,50);
+select * from salary;
 
+-- Inner Join
+SELECT Name.Id, Name.Name, Salary.Salary
+FROM Name
+INNER JOIN Salary
+ON Name.Id = Salary.Id;
 
+-- Left Join
+SELECT Name.Id, Name.Name, Salary.Salary
+FROM Name
+left JOIN Salary
+ON Name.Id = Salary.Id;
 
+-- Right Join
+SELECT Name.Id, Name.Name, Salary.Salary
+FROM Name
+right JOIN Salary
+ON Name.Id = Salary.Id;
 
+-- Same Answer
+select Name.id, Name.Name, salary.salary
+from name
+right join salary
+on name.id = salary.id;
 
-
-
-
-
+select Name.id, Name.Name, salary.salary
+from salary
+left join name
+on name.id = salary.id;
