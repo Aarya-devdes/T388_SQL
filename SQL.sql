@@ -139,17 +139,13 @@ CREATE TABLE Name (
 Id INT PRIMARY KEY,
 `Name` VARCHAR(45) NOT NULL);
 INSERT INTO Name values
-(1,"a"),
-(2,"b"),
-(3,"c"),(4,"d"),(5,"e");
+(1,"a"),(2,"b"),(3,"c"),(4,"d"),(5,"e");
 select * from name;
 CREATE TABLE Salary (
 Id INT PRIMARY KEY,
 Salary Float NOT NULL);
 INSERT INTO Salary values
-(1,10),
-(2,20),
-(4,30),(5,40),(7,50);
+(1,10),(2,20),(4,30),(5,40),(7,50);
 select * from salary;
 
 -- Inner Join
@@ -180,3 +176,13 @@ select Name.id, Name.Name, salary.salary
 from salary
 left join name
 on name.id = salary.id;
+
+-- Outer Join
+select * from Name;
+select * from salary;
+
+select Name.Id, Name.name, Salary.Id
+from name 
+left join salary 
+on name.id = salary.id;
+
